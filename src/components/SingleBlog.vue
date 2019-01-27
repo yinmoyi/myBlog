@@ -1,6 +1,7 @@
 <template>
     <div class="singleBlog">
-        <h1>{{blog.title}}</h1>
+        <h1 class="singleTitle">{{blog.title}}</h1>
+		<div class="authorText"><span>发布时间:<i>{{blog.time}}</i></span><span>作者:<i>{{blog.author}}</i></span><span>分类:<i v-for="category in blog.categories">{{category}}</i></span></div>
         <article v-html="blog.content"></article>
     </div>
 </template>
@@ -25,6 +26,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped="scoped">
+.singleTitle{font-size: 36px; font-weight: normal;color: #333;text-align: center;}
+.authorText{ text-align: center; font-size: 13px; color: #999; line-height: 40px;}
+.authorText span{ padding: 0 8px;}
+.authorText i{ font-style: normal;padding-left: 4px;}
+article{padding: 30px 0;}
 </style>
