@@ -65,7 +65,7 @@ export default {
                 categories:[],
                 author:"",
 				fulltime:new Date().getTime(),
-				time:new Date().getFullYear() +"-" + new Date().getMonth()+1 +"-"+ new Date().getDate()
+				time:new Date().getFullYear() +"-" + ((new Date().getMonth() +1)<10?('0'+(new Date().getMonth() +1)):(new Date().getMonth() +1)) +"-"+ new Date().getDate()
             },
             authors:["章苏萍","匿名网友"],
             flag:false,
