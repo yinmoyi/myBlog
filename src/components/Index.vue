@@ -11,6 +11,12 @@
         <div class="carousel-item active">
           <img class="d-block w-100" src="../assets/banner1.jpg" alt="First slide">
         </div>
+				<div class="carousel-item">
+          <img class="d-block w-100" src="../assets/banner2.jpg" alt="First slide">
+        </div>
+				<div class="carousel-item">
+          <img class="d-block w-100" src="../assets/banner3.jpg" alt="First slide">
+        </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -29,43 +35,33 @@
 					<li class="nav-item">
 						<router-link class="nav-link" to="/">博客总览</router-link>
 					</li>
-					<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">前端</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">JavaScript</a>
-							<a class="dropdown-item" href="#">Webpack</a>
-							<a class="dropdown-item" href="#">vue</a>
-							<a class="dropdown-item" href="#">正则</a>
-							<a class="dropdown-item" href="#">异步</a>
-						</div>
-					</li> -->
 					<li class="nav-item">
 						<router-link class="nav-link" to="/frontend">前端</router-link>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<router-link class="nav-link" to="/projects">项目集</router-link>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<router-link class="nav-link" to="/travel">旅行日记</router-link>
 					</li>
 					<li class="nav-item">
 						<router-link class="nav-link" to="/time">时间轴</router-link>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<router-link class="nav-link" to="/spare">打赏</router-link>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<router-link class="nav-link" to="/words">留言版</router-link>
 					</li>
 				</ul>
-				<!-- <form class="form-inline">
+				<form class="form-inline">
 				  <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" v-model="search">
-				</form> -->
+				</form>
 			</div>
     </nav>
 		
 		<div>
-			<router-view></router-view>
+			<router-view v-bind:blogs="this.$store.state.blogs" v-bind:search="search"></router-view>
 		</div>
 
   </div>
@@ -73,12 +69,15 @@
 
 <script scoped>
 export default {
-  name: 'home',
-	data () {
-		return {
-		  search:""
+	name: 'home',
+	data(){
+		return{
+			search:""
 		}
 	},
+	created(){
+		this.$store.commit('getData')
+	}
 }
 </script>
 

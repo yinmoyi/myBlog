@@ -4,9 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import VueResource from 'vue-resource'
 import router from './router'
+import { store } from './store'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(VueResource)
+Vue.prototype.$ajax = axios
 
 // Vue.directive('rainbow',{
 //   bind(el,binding,vnode){
@@ -14,8 +17,19 @@ Vue.use(VueResource)
 //   }
 // })
 
+Vue.filter('intercept80',function(value){
+  if(!value) return '';
+  return value.toString().slice(0,80) 
+})
+
+Vue.filter('intercept200',function (value) { 
+  if(!value) return '';
+  return value.toString().slice(0,200) + '...'
+})
+
 /* eslint-disable no-new */
 new Vue({
+  store,
   el: '#app',
   router,
   components: { App },

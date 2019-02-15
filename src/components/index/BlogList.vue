@@ -14,43 +14,9 @@
 
 <script>
 export default {
-	data () {
-		return {
-		  blogs:[],
-		  search:""
-		}
-	},
-  created(){
-		this.$http.get('https://wd9926596323judpfb.wilddogio.com/posts.json').then( (data) => {
-			return data.json()
-			// this.blogs = data.body.slice(0,6)
-		}).then((data) => {     
-			var arrayData = [];
-			for ( var key in data){
-			// console.log(key)
-			data[key].id = key;
-			arrayData.push(data[key])
-			}
-			this.blogs = arrayData;
-			// console.log(this.blogs)
-		})
-  },
-  filters:{
-		intercept80(value){
-			if(!value) return '';
-			return value.toString().slice(0,80) 
-		},
-		intercept200(value){
-			if(!value) return '';
-			return value.toString().slice(0,200) + '...'
-		}
-  },
+	props:["blogs","search"],
   computed:{
 		filterBlogs(){
-// 			return this.blogs.filter( (blog) => {
-// 				return blog.title.match(this.search)
-// 			})		
-
 				return sortKey(this.blogs.filter( (blog) => {
 					return blog.title.match(this.search)
 				}),'fulltime')
@@ -77,9 +43,6 @@ function sortKey(array,key){
   margin: 14px 0;
 }
 .blogsList .card .card-header{font-size: 20px;color: #403f3f;}
-.blogsList .card-text{
-  /* margin-bottom: 10px; */
-}
 .blogsList .card .date{
 	font-size: 13px;
 	height: 40px;
